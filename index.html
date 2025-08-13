@@ -26,9 +26,16 @@
   <!-- Upload Section -->
   <div class="upload-container">
     <p id="instructions">
-      Upload an <b>.xlsx</b> file with the following template:  <br/><br/>
-      <span class="highlight-col">ID, First_Name, Parent ID, Designation</span> 
+      Upload an <b>.xlsx</b> file with the columns:
     </p>
+    <div class="highlight-col">
+      ID, First_Name, Parent ID, Designation
+    </div>
+    <p class="or-separator"><b>or</b></p>
+    <p>
+      Download the <b>.xlsx</b> file template:
+    </p>
+    <a href="template.xlsx" download class="download-btn">📥 Excel Template</a>
     <div class="controls" id="file-controls">
       <label for="upload" class="custom-file-upload">Choose File</label>
       <input type="file" id="upload" accept=".xlsx" />

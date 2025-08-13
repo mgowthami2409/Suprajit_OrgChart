@@ -64,14 +64,64 @@ p { font-size: 1em; margin-bottom: 20px; }
 .controls { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
 input[type="file"] { display: none; }
 
+#instructions {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
 .highlight-col {
+  background-color: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.or-separator {
+  text-align: center;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.download-btn {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: black;
+  padding: 4px 8px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+/* .highlight-col {
   background: linear-gradient(90deg, #34987da1, #d7785682);
-  color: #000; /* black text */
+  color: #000; /* black text 
   font-weight: bold;
   padding: 2px 4px;
   border-radius: 4px;
   border: 1px solid black;
+} */
+
+/* .download-btn {
+  display: inline-block;
+  background-color: #4CAF50;
+  border: 1px solid black;
+  color: black;
+  padding: 2px 4px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
 }
+.download-btn:hover {
+  background-color: #45a049;
+} */
 
 /* Buttons */
 .custom-file-upload, .styled-button {
