@@ -1,0 +1,275 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: linear-gradient(90deg, #7F7FD5, #86A8E7, #91EAE4);
+  color: #0b0b0b;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* ✅ Logo + Title */
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+  
+}
+.header-container .logo-img {
+  max-height: 50px;
+  width: auto;
+}
+.header-container #page-title { margin: 0; font-size: 3em;}
+
+/* Titles */
+#chart-title, #page-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #0928ec, #f91b1b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.header h4 {
+  /* font-size: 3em; */
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#page-title1,
+.header h2 {
+  font-size: 2em;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #0928ec, #f91b1b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Upload Section */
+.upload-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+p { font-size: 1em; margin-bottom: 20px; }
+.controls { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+input[type="file"] { display: none; }
+
+.highlight-col {
+  background: linear-gradient(90deg, #34987da1, #d7785682);
+  color: #000; /* black text */
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
+/* Buttons */
+.custom-file-upload, .styled-button {
+  padding: 6px 12px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.styled-button {
+  font-size: 10px;
+  padding: 4px 8px;
+}
+#submitBtn, #clearBtn {
+  font-size: 1em;
+  padding: 6px 12px;
+}
+.custom-file-upload { background: linear-gradient(90deg, #ffa17f, #00223e); color: white; }
+.custom-file-upload:hover { background: linear-gradient(90deg, #ff9966, #003e6f); }
+.submit-btn { background: linear-gradient(90deg, #4facfe, #00f2fe); color: white; }
+.submit-btn:hover { background: linear-gradient(90deg, #00c6ff, #0072ff); }
+.clear-btn { background: linear-gradient(90deg, #f7971e, #ffd200); color: white; }
+.clear-btn:hover { background: linear-gradient(90deg, #ffb347, #ffcc33); }
+.refresh-btn { background: linear-gradient(90deg, #00c9ff, #92fe9d); color: white; }
+.refresh-btn:hover { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+.back-btn { background: linear-gradient(90deg, #f54ea2, #ff7676); color: white; }
+.back-btn:hover { background: linear-gradient(90deg, #ff6a00, #ee0979); }
+.print-btn { background: linear-gradient(90deg, #43cea2, #185a9d); color: white; }
+.print-btn:hover { background: linear-gradient(90deg, #11998e, #38ef7d); }
+
+/* Chart */
+#chart_div {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  padding-bottom: 10px;
+  width: 100%; height: 100%;
+  padding: 0;
+  background: linear-gradient(145deg, #eaecd1, #bedce6);
+  overflow: hidden;
+  z-index: 1;
+}
+#chart-container {
+  display: flex;
+  justify-content: center;
+  transform: scale(1);
+  transform-origin: top center;
+  margin: 0 -550px;
+  z-index: 1;
+}
+.search-controls {
+  display: flex; justify-content: center; align-items: center;
+  flex-wrap: wrap; gap: 10px; margin: 0px; margin-bottom: 10px;
+}
+#search {
+  padding: 4px; border-radius: 8px; border: none;
+  width: 200px; font-size: 10px; display: none;
+}
+
+/* Popup */
+.popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.popup-content { background: white; padding: 25px; border-radius: 12px; width: 300px; text-align: left; position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.popup-content h3 { margin-top: 0; }
+.popup-field { margin: 10px 0; }
+.popup-field strong { display: inline-block; width: 110px; text-align: left; }
+.close { position: absolute; top: 8px; right: 12px; font-size: 24px; cursor: pointer; }
+.hidden { display: none; }
+
+
+/* ✅ Watermark */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
+  background-image: url('logo-removebg-preview.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.07;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orgchart .toggle {
+  fill: orange !important;
+  stroke: #000 !important;  /* Optional: black border */
+  stroke-width: 1px !important;
+}
+
+/* Hide print header by default */
+#print-header {
+  display: none;
+  z-index: 9999;
+  position: absolute;
+}
+
+@media print {
+  @page {
+    size: A4 landscape; /* Set the page size to A4 landscape */
+    margin: 5mm; /* Set margins for printing */
+    border: 2px solid #000; /* Optional: add a border */
+  }
+  body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  body {
+    background: white !important;
+    background-image: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body::before {
+    display: none !important; /* remove watermark logo */
+  }
+
+  #print-header {
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  img.print-logo {
+    border: none !important;
+    display: block;
+  }
+
+  .print-only {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    z-index: 9999;
+  }
+
+  .print-logo {
+    height: 35px;
+    width: auto;
+  }
+
+  .print-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: darkblue !important;
+  }
+
+  /* Hide everything else */
+  .header-container,
+  #page-title,
+  #page-title1,
+  #chart-title,
+  #instructions,
+  #columns,
+  #fileStatus,
+  #file-controls,
+  .search-controls,
+  .styled-button,
+  #search,
+  #popup,
+  body::before {
+    display: none !important;
+  }
+
+  #chart_div {
+    position: relative !important; /* Prevent it from covering print-header */
+    z-index: 0 !important;
+    margin-top: 70px !important;
+    background: #fff !important;
+    padding: 0 !important;
+    /* margin: 0 !important; */
+    height: auto !important;
+  }
+
+  #orgChart {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  /* Make sure scaling doesn't cause fading */
+  svg {
+      shape-rendering: crispEdges; /* Prevents anti-alias blur on lines */
+  }
+}
