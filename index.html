@@ -12,6 +12,7 @@
   <div id="print-header" class="print-only">
     <img src="logo-removebg-preview.png" alt="Company Logo" class="print-logo" />
     <span class="print-title">Suprajit</span>
+    <h3 id="print-department" class="print-department"></h3> <!-- new -->
   </div>
 
   <!-- Logo + Title -->
@@ -25,17 +26,18 @@
 
   <!-- Upload Section -->
   <div class="upload-container">
-    <p id="instructions">
+    <!-- <p id="instructions">
       Upload an <b>.xlsx</b> file with the columns:
     </p>
     <div class="highlight-col">
-      ID, First_Name, Parent ID, Designation
+      ID, First_Name, Parent ID, Designation, Photo
     </div>
-    <p class="or-separator"><b>or</b></p>
+    <p class="or-separator"><b>or</b></p> -->
     <p>
       Download the <b>.xlsx</b> file template:
     </p>
-    <a href="template.xlsx" download class="download-btn">📥 Excel Template</a>
+    <a href="template-with-photo.xlsx" download class="download-btn">📥 Excel Template</a>
+    <br/><br/>
     <div class="controls" id="file-controls">
       <label for="upload" class="custom-file-upload">Choose File</label>
       <input type="file" id="upload" accept=".xlsx" />

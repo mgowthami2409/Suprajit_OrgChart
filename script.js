@@ -47,7 +47,7 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
 
     // ✅ 2. Check required columns
-    const requiredColumns = ["ID", "First_Name", "Parent ID", "Designation"];
+    const requiredColumns = ["ID", "First_Name", "Parent ID", "Designation", "Photo", "Department"];
     const uploadedColumns = sheet[0] || [];
     const missingColumns = requiredColumns.filter(col => !uploadedColumns.includes(col));
 
@@ -144,7 +144,8 @@ function drawChart(data) {
     id: row.ID,
     pid: row["Parent ID"] || null,
     name: row.First_Name,
-    title: row.Designation
+    title: row.Designation,
+    img: row.Photo
   }));
 
   console.log("Total nodes to render:", nodes.length); // Add this line
@@ -157,12 +158,6 @@ function drawChart(data) {
     OrgChart.templates.dynamic.background = 
     `<rect x="0" y="0" width="{w}" height="{h}" fill="white" stroke="black" stroke-width="4"></rect>`;
 
-  // Node style: white fill, black border
-  OrgChart.templates.ana.node =
-    '<rect x="0" y="0" height="{h}" width="{w}" rx="10" ry="10" fill="#fff" stroke="#000" stroke-width="2px"></rect>';
-
-  OrgChart.templates.ana.size = [250, 140];
-
   // Plus icon (expand)
   OrgChart.templates.ana.plus =
     '<circle cx="15" cy="15" r="10" fill="orange" stroke="#000" stroke-width="1"></circle>' +
@@ -174,14 +169,32 @@ function drawChart(data) {
     '<circle cx="15" cy="15" r="10" fill="orange" stroke="#000" stroke-width="1"></circle>' +
     '<line x1="10" y1="15" x2="20" y2="15" stroke="#000" stroke-width="2"></line>';
 
-  OrgChart.templates.ana.field_0 = 
-    '<foreignObject x="5" y="15" width="240" height="80">' +
-    '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 28px; font-weight: bold; text-align:center; line-height: 1.1;">{val}</div>' +
+  OrgChart.templates.ana.size = [350, 250];
+
+  OrgChart.templates.ana.node =
+    '<rect x="0" y="0" height="{h}" width="{w}" rx="10" ry="10" fill="#fff" stroke="#000" stroke-width="2"></rect>';
+
+  // Profile image smaller and moved slightly up
+  OrgChart.templates.ana.img_0 =
+    '<clipPath id="circleImg"><circle cx="180" cy="45" r="40"/></clipPath>' +
+    '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#circleImg)" x="140" y="5" width="80" height="80" xlink:href="{val}"/>';
+
+  // Name: increased font size, full width, wrapped and centered
+  OrgChart.templates.ana.field_0 =
+    '<foreignObject x="10" y="85" width="330" height="80">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" ' +
+        'style="font-size:34px;font-weight:700;color:#000;text-align:center;' +
+        'line-height:1.0;word-wrap:break-word;height:100%;display:flex;' +
+        'align-items:center;justify-content:center;overflow-wrap:anywhere;">{val}</div>' +
     '</foreignObject>';
 
-  OrgChart.templates.ana.field_1 = 
-    '<foreignObject x="5" y="75" width="240" height="55">' +
-    '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 24px; color: #444; text-align:center; line-height: 1.1;">{val}</div>' +
+  // // Designation: slightly bigger font, full width, wrapped and centered
+  OrgChart.templates.ana.field_1 =
+    '<foreignObject x="10" y="150" width="330" height="80">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" ' +
+        'style="font-size:28px;font-weight:600;color:#555;text-align:center;' +
+        'line-height:1.0;word-wrap:break-word;height:100%;display:flex;' +
+        'align-items:center;justify-content:center;overflow-wrap:anywhere;">{val}</div>' +
     '</foreignObject>';
 
   OrgChart.templates.ana.link = '<path stroke-linejoin="round" stroke="#000" stroke-width="2px" fill="none" d="{rounded}" />'; 
@@ -190,20 +203,20 @@ function drawChart(data) {
     nodes: nodes,
     nodeBinding: {
       field_0: "name",
-      field_1: "title"
+      field_1: "title",
+      img_0: "img"
     },
+    
     scaleInitial: OrgChart.match.boundary,
     layout: OrgChart.mixed,
     enableSearch: false,
     template: "ana", // or 'ana', 'isla', etc.
     spacing: 100,            // Reduce vertical space
     levelSeparation: 100,
-    nodeMouseClick: OrgChart.action.none,
-    // linkStyle: {
-    //   stroke: "#000",
-    //   "stroke-width": "4px"
-    // }
+    nodeMouseClick: OrgChart.action.none
+
   });
+  chart.load(nodes);
 
   // Popup binding
   chart.on("click", function(sender, args){
@@ -220,7 +233,6 @@ function drawChart(data) {
   });
 }
 
-
 document.getElementById('close-popup').addEventListener('click', () => {
   document.getElementById('popup').classList.add('hidden');
 });
@@ -229,7 +241,6 @@ document.getElementById('close-popup').addEventListener('click', () => {
 document.getElementById('printBtn').addEventListener('click', () => {
   window.print();
 });
-
 
 // ✅ Reset main window state after printing
 window.onafterprint = function () {
