@@ -176,8 +176,8 @@ function drawChart(data) {
 
   // Profile image smaller and moved slightly up
   OrgChart.templates.ana.img_0 =
-    '<clipPath id="circleImg"><circle cx="180" cy="45" r="40"/></clipPath>' +
-    '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#circleImg)" x="140" y="5" width="80" height="80" xlink:href="{val}"/>';
+    '<clipPath id="circleImg"><circle cx="180" cy="45" r="45"/></clipPath>' +
+    '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#circleImg)" x="140" y="5" width="90" height="90" xlink:href="{val}"/>';
 
   // Name: increased font size, full width, wrapped and centered
   OrgChart.templates.ana.field_0 =
