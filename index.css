@@ -201,6 +201,12 @@ body::before {
   object-fit: cover;
 }
 
+.emp-photo {
+  max-width: 100px;
+  border-radius: 50%;
+  display: none;
+}
+
 /* Hide print header by default */
 #print-header {
   display: none;

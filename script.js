@@ -224,6 +224,17 @@ function drawChart(data) {
     const emp = data.find(r => r.ID.toString() === empId.toString());
     const manager = data.find(r => r.ID === emp["Parent ID"]);
 
+    // Photo handling
+    const photoUrl = document.getElementById('emp-photo');
+    if (emp.Photo) {
+      photoUrl.src = emp.Photo;
+      photoUrl.style.display = 'block'; // Show photo if available
+    }
+    else {
+      photoUrl.style.display = 'none'; // Default photo if not available
+    }
+
+    // document.getElementById('emp-photo').src = emp.Photo || 'default-photo.png';
     document.getElementById('emp-id').textContent = emp.ID;
     document.getElementById('emp-name').textContent = emp.First_Name;
     document.getElementById('emp-designation').textContent = emp.Designation;
